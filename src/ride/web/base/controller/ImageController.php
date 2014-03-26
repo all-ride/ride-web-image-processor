@@ -51,6 +51,9 @@ class ImageController extends AbstractController {
         $form->addRow('y2', 'hidden', array(
             'type' => 'hidden',
         ));
+        $form->addRow('displayWidth', 'hidden', array(
+            'type' => 'hidden',
+        ));
         $form->setRequest($this->request);
 
         $form = $form->build();
@@ -58,11 +61,19 @@ class ImageController extends AbstractController {
             try {
                 $data = $form->getData();
 
-                if ($data['x2'] && $data['y2']) {
+                if ($data['x2'] && $data['y2'] && $data['x2'] != $data['x1'] && $data['y2'] != $data['y1']) {
+                    $image = $imageFactory->read($file);
+
+                    $imageWidth = $image->getWidth();
+                    $ratio = $imageWidth / $data['displayWidth'];
+                    $data['x1'] *= $ratio;
+                    $data['x2'] *= $ratio;
+                    $data['y1'] *= $ratio;
+                    $data['y2'] *= $ratio;
+
                     $dimension = new Dimension($data['x2'] - $data['x1'], $data['y2'] - $data['y1']);
                     $start = new Point($data['x1'], $data['y1']);
 
-                    $image = $imageFactory->read($file);
                     $image = $image->crop($dimension, $start);
 
                     $imageFactory->write($file, $image);
