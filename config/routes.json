@@ -1,0 +1,11 @@
+{
+    "routes": [
+        {
+            "path": "image/process",
+            "controller": "ride\\web\\base\\controller\\ImageController",
+            "action": "processAction",
+            "methods": ["head", "get", "post"],
+            "id": "image.processor"
+        }
+    ]
+}
