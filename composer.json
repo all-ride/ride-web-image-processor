@@ -2,7 +2,7 @@
     "name": "ride/web-image-processor",
     "description": "Image processor UI for a Ride web application",
     "license": "MIT",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "authors": [
         {
             "name": "Kristof Serré",
@@ -15,11 +15,11 @@
     ],
     "require": {
         "ride/lib-http": ">=0.2.1",
-        "ride/lib-image": ">=0.2.0",
         "ride/lib-system": ">=0.4.1",
         "ride/lib-validation": ">=0.2.0",
-        "ride/web-base": ">=0.1.0"
-    }, 
+        "ride/web-base": ">=0.1.0",
+        "ride/web-image": ">=0.3.0"
+    },
     "autoload": {
         "psr-0": {
             "ride\\web\\base\\controller\\ImageController": ["src/"]
